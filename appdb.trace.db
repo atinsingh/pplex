@@ -1,0 +1,6 @@
+2023-01-28 13:26:06 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CUSTOMER  WHWRE [*]LAST_NAME='Singh'"; SQL statement:
+SELECT * FROM CUSTOMER  WHWRE LAST_NAME='Singh' [42000-214]
+2023-01-28 13:27:45 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM CUSTOMER  WHERE LAST_NAME like [*]""%Singh%';;"; SQL statement:
+SELECT * FROM CUSTOMER  WHERE LAST_NAME like "%Singh%';; [42000-214]

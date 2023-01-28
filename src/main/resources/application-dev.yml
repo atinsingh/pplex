@@ -1,0 +1,17 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:./appdb
+    password:
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+
+car:
+  name: HONDA
+
