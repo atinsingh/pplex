@@ -1,12 +1,15 @@
 package com.example.pragraplex.service;
 
 import com.example.pragraplex.entity.Customer;
+import com.example.pragraplex.exceptions.UnsupportedLoginEmailException;
 import com.example.pragraplex.exceptions.UnsupportedLoginNameException;
 import com.example.pragraplex.repo.CustomerRepo;
+import com.example.pragraplex.validation.CustomerValidation;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -18,10 +21,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer) {
-        if(customer.getLogin()==null){
-            throw new UnsupportedLoginNameException("Login Name can't be null");
+        if(CustomerValidation.customerValidation(customer)) {
+            return repo.save(customer);
         }
-        return repo.save(customer);
+        return customer;
     }
 
     @Override
