@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,4 +26,7 @@ public class Customer implements Serializable {
     private boolean isLoggedIn;
     private Date createDate;
     private Date updateDate;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 }
