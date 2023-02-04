@@ -1,8 +1,12 @@
 package com.example.pragraplex.rest;
 
 import com.example.pragraplex.entity.Order;
+import com.example.pragraplex.exceptions.CustomerNotFoundException;
+import com.example.pragraplex.exceptions.MovieNotFoundException;
 import com.example.pragraplex.service.CustomerService;
 import com.example.pragraplex.service.OrderService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +23,8 @@ public class OrderApi {
     }
 
     @PostMapping("/{id}/order")
-    public Order addOrder(@PathVariable("id") int customerId, @RequestBody Order order){
-        return service.createOrder(customerId, order);
+    public ResponseEntity<Order> addOrder(@PathVariable("id") int customerId, @RequestBody Order order){
+           return ResponseEntity.status(HttpStatus.CREATED).header("X-CREATOR","SHUBHAM").body(service.createOrder(customerId, order));
     }
 
 

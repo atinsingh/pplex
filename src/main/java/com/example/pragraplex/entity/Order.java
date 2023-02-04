@@ -20,6 +20,9 @@ public class Order {
     )
     private UUID id;
     private String movieName;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "MovieId", referencedColumnName = "Movie_ID")
+    private Movie movie;
     private Date orderDate;
     private  Date showDate;
 
