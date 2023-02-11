@@ -9,6 +9,7 @@ import com.example.pragraplex.repo.OrderRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.ref.PhantomReference;
 import java.util.List;
@@ -23,6 +24,7 @@ public class OrderServiceImpl implements OrderService {
     private final CustomerService customerService;
     private final MovieService movieService;
 
+    @Transactional
     public Order createOrder(int custId, Order order){
         Optional<Customer> customerById = customerService.getCustomerById(custId);
         Optional<Movie> movieById = movieService.getMovieByID(order.getMovie().getId());
@@ -54,11 +56,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<Order> finAll(){
-        return repo.findAll();
+
+        List<Order> all = repo.findAll();
+        log.info("Processing all orders");
+        return all;
     }
 
     public Optional<Order> findOneById(UUID uuid) {
-        return repo.findById(uuid);
+        Optional<Order> byId = repo.findById(uuid);
+        log.info("ALL GOOD");
+        return byId;
+
     }
 
 

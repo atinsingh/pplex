@@ -30,4 +30,14 @@ public class ErrorControllerAdvice {
                 .errorDate(new Date())
                 .build());
     }
+
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<ErrorDto> handleMovieNull(Exception ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorDto.builder()
+                .errorCode(3000)
+                .message(ex.getMessage())
+                .errorDate(new Date())
+                .build());
+    }
+
 }
